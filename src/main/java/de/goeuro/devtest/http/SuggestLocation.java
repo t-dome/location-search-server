@@ -31,7 +31,7 @@ public class SuggestLocation extends HttpServlet {
             "    \"geo_position\" : {\n" +
             "        \"latitude\" : 52.39886,\n" +
             "        \"longitude\" : 13.06566\n" +
-            "      }" +
+            "      }\n" +
             "   } ]\n" +
             "}";
 
@@ -39,6 +39,9 @@ public class SuggestLocation extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchParam = getFirstPathParam(request);
         if (searchParam != null) {
+            response.setContentType("application/json; charset=UTF-8");
+
+            // for the sake of simplicity, just use a hardcoded string
             response.getWriter().write(FIXED_RESULT);
         } else {
             // error - no search string provided in URL
